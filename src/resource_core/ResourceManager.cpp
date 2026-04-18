@@ -9,7 +9,6 @@ std::shared_ptr<FileHandle> ResourceManager::getFile(const std::string& filename
 
     if (it != cache_.end())
     {
-        // Пытаемся получить указатель на файл
         auto ptr = it->second.lock();
         if (ptr)
         {
