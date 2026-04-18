@@ -5,7 +5,6 @@ namespace lab4::resource
 
 std::shared_ptr<FileHandle> ResourceManager::getFile(const std::string& filename)
 {
-    // Ищем файл в кеше
     auto it = cache_.find(filename);
 
     if (it != cache_.end())
