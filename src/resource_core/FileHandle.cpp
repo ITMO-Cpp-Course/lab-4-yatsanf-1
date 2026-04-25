@@ -1,12 +1,13 @@
-#include "FileHandle.h"
-#include "ResourceError.h"
+#include "../include/FileHandle.hpp"
+#include "../include/ResourceError.hpp"
 
 namespace lab4::resource
 {
 
 FileHandle::FileHandle(const std::string& filename) : name_(filename), opened_(false)
 {
-    file_.open(filename, std::ios::in | std::ios::out | std::ios::app);
+    file_.open(filename, std::ios::in | std::ios::out |
+                             std::ios::app); // Открывает файл в режиме: читать, писать, дописывать в конец
 
     if (!file_.is_open())
     {
@@ -20,8 +21,9 @@ FileHandle::~FileHandle()
     close();
 }
 
-FileHandle::FileHandle(FileHandle&& other) noexcept
-    : file_(std::move(other.file_)), name_(std::move(other.name_)), opened_(other.opened_)
+FileHandle::FileHandle(FileHandle&& other) noexcept // принимает временную ссылкку и обещает не выбрасывать ошибку
+    : file_(std::move(other.file_)), name_(std::move(other.name_)),
+      opened_(other.opened_) // забираем файл, имя и статус
 {
     other.opened_ = false;
 }

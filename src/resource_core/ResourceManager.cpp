@@ -1,16 +1,16 @@
-#include "ResourceManager.h"
+#include "../include/ResourceManager.hpp"
 
 namespace lab4::resource
 {
 
 std::shared_ptr<FileHandle> ResourceManager::getFile(const std::string& filename)
 {
-    auto it = cache_.find(filename);
+    auto it = cache_.find(filename); // ищем файл в хеш-таблице с именем filename
 
-    if (it != cache_.end())
+    if (it != cache_.end()) // если  не указывает на конец
     {
-        auto ptr = it->second.lock();
-        if (ptr)
+        auto ptr = it->second.lock(); // достаем из кеша слабую ссылку и превращаем в сильную
+        if (ptr)                      // файл жив
         {
             return ptr; // нашли! возвращаем из кеша
         }
@@ -18,17 +18,16 @@ std::shared_ptr<FileHandle> ResourceManager::getFile(const std::string& filename
         cache_.erase(it);
     }
 
-    // Если не нашли в кеше - создаём новый файл
-    auto newFile = std::make_shared<FileHandle>(filename);
-    // Сохраняем в кеш
-    cache_[filename] = newFile;
+    auto newFile =
+        std::make_shared<FileHandle>(filename); // создает новый объект в FileHandle и оборачивает его в умный указатель
+    cache_[filename] = newFile;                 // создаем запись по ключу в кеше
     return newFile;
 }
 
 void ResourceManager::cleanCache()
 {
     // Проходим по всем записям в кеше
-    for (auto it = cache_.begin(); it != cache_.end();)
+    for (auto it = cache_.begin(); it != cache_.end();) // проходим с первого элемента кеша по последний
     {
         // Если файл уже мёртвый (expired)
         if (it->second.expired())

@@ -1,11 +1,6 @@
-#include "ResourceError.h"
+#include "../include/ResourceError.hpp"
 
 namespace lab4::resource
 {
-ResourceError::ResourceError(const std::string& msg) : message_(msg) {}
-
-const char* ResourceError::what() const noexcept
-{
-    return message_.c_str();
-}
+ResourceError::ResourceError(const std::string& message) : std::runtime_error(message) {}
 } // namespace lab4::resource
