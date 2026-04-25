@@ -2,9 +2,9 @@
 
 add_library(resource_core STATIC
         ResourceError.cpp
-        ResourceError.h
-        FileHandle.h
-        ResourceManager.h
+        ../include/ResourceError.hpp
+        ../include/FileHandle.hpp
+        ../include/ResourceManager.hpp
         ResourceManager.cpp
         FileHandle.cpp
 )

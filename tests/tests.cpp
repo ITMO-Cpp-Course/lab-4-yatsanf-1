@@ -1,6 +1,6 @@
-#include "FileHandle.h"
-#include "ResourceError.h"
-#include "ResourceManager.h"
+#include "../src/include/FileHandle.hpp"
+#include "../src/include/ResourceError.hpp"
+#include "../src/include/ResourceManager.hpp"
 #include <catch2/catch_all.hpp>
 
 using namespace lab4::resource;

@@ -35,9 +35,9 @@ enable_testing()
 # Sanitizers are not supported on Windows (neither MSVC nor MinGW)
 if (ENABLE_SANITIZERS AND NOT WIN32)
     add_library(project_sanitizers INTERFACE
-            src/resource_core/ResourceError.h
-            src/resource_core/ResourceError.h
-            src/resource_core/ResourceError.h
+            src/include/ResourceError.hpp
+            src/include/ResourceError.hpp
+            src/include/ResourceError.hpp
             src/resource_core/ResourceError.cpp
             src/resource_core/ResourceError.cpp)
     target_compile_options(project_sanitizers INTERFACE $<$<CONFIG:Debug>:-fsanitize=address -fno-omit-frame-pointer>)
