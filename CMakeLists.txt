@@ -34,7 +34,12 @@ enable_testing()
 # AddressSanitizer (ASan) as an interface target
 # Sanitizers are not supported on Windows (neither MSVC nor MinGW)
 if (ENABLE_SANITIZERS AND NOT WIN32)
-    add_library(project_sanitizers INTERFACE)
+    add_library(project_sanitizers INTERFACE
+            src/include/ResourceError.hpp
+            src/include/ResourceError.hpp
+            src/include/ResourceError.hpp
+            src/resource_core/ResourceError.cpp
+            src/resource_core/ResourceError.cpp)
     target_compile_options(project_sanitizers INTERFACE $<$<CONFIG:Debug>:-fsanitize=address -fno-omit-frame-pointer>)
     target_link_options(project_sanitizers INTERFACE    $<$<CONFIG:Debug>:-fsanitize=address>)
 endif ()
